@@ -4,19 +4,7 @@ A TypeScript-based tennis match calculator built using **Test-Driven Development
 
 ## Development/Thinking Process
 
-After analysing the requirements, I broke it down into the following:
-
-- **Input**: Tournament file with match data and point sequences
-- **Output**: Match scores and player game statistics
-- **Queries**:
-  - `Score Match <id>` - Get match result
-  - `Games Player <name>` - Get player's games won/lost
-- **Rules**:
-  - Game: First to 4 points, must be ahead by 2
-  - Set: First to 6 games, no need to be ahead by 2
-  - Match: Best of 3 sets, first to 2 sets wins
-
-I used a bottom-up approach and followed TDD (Red - Green - Refactor) process for this challenge, building from the smallest components to the complete application. I started by writing basic test scenarios (Todos) and implementing to make them pass. I tested for code coverage and added test cases for uncovered lines and edge cases. I refactored the implementation when needed (eg. implementing abstractions and dependency injection for clean and modular code)
+I went with a bottom-up approach and stuck to TDD (Red-Green-Refactor) throughout this project. I started small with the `Player` class and worked my way up to the full application. My process was pretty straightforward: write a failing test, get it to pass with the simplest code possible, then clean it up. I'd start each component by jotting down test scenarios as todos, then turn those into real tests that guided my implementation. Once I had the basics working, I'd run coverage reports to see what I missed and add tests for edge cases and error scenarios. As things got more complex, I found myself refactoring quite a bit - pulling out interfaces like `IMatchRules`, using dependency injection to swap out different rule sets, and splitting big classes into smaller, focused ones like `GameSequenceParser` and `SetConverter`. This kept each piece manageable and made sure everything was well-tested before I moved on to the next layer.
 
 #### Development Order:
 
@@ -28,6 +16,19 @@ I used a bottom-up approach and followed TDD (Red - Green - Refactor) process fo
 6. **Refactoring** - Extracted `GameSequenceParser` & `SetConverter`
 7. **TennisApp.ts** - CLI controller and application orchestration
 8. **index.ts** - Program entry point
+
+## How I leveraged AI
+
+Throughout this challenge, I leveraged AI as a pair programmer to enhance code quality and ensure comprehensive testing. After implementing each component using TDD, I used AI to review my test suites and identify potential edge cases I might have missed, such as handling invalid inputs, boundary conditions, and unusual game sequences. AI also helped me discover additional test scenarios that improved my code coverage. During the refactoring phase, I used AI to analyze my code structure and suggest improvements for better separation of concerns - this led to extracting `GameSequenceParser` and `SetConverter` into separate, focused classes. This AI-assisted approach complemented my development process, ensuring both comprehensive testing and clean code architecture.
+
+## Assumptions
+
+- Tournament files are well-formatted with consistent structure (Match: ID, Player vs Player, point sequences)
+- Point sequences use only 0 (player1 wins point) and 1 (player2 wins point)
+- Match IDs are unique within a tournament file
+- Player names don't contain special characters that could break parsing
+- Sets are won by first to 6 games (no need for 2 game lead)
+- Games use standard tennis scoring (0, 15, 30, 40, deuce, advantage)
 
 ## Getting Started
 
