@@ -1,0 +1,27 @@
+{
+  "name": "tennis-calculator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node index.ts",
+    "dev:tournament": "ts-node index.ts full_tournament.txt"
+  },
+  "keywords": [],
+  "author": "Justin Garcia",
+  "license": "ISC",
+  "description": "Tennis calculator",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^24.0.1",
+    "jest": "^30.0.0",
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
