@@ -75,6 +75,13 @@ export class TennisApp {
     }
   }
 
+  public cleanup(): void {
+    if (this.rl) {
+      this.rl.close();
+      this.rl = undefined;
+    }
+  }
+
   private handleScoreMatchQuery(parts: string[]): void {
     this.validateDataLoaded();
     if (parts.length !== 3) {
@@ -225,13 +232,6 @@ export class TennisApp {
     };
 
     processInput();
-  }
-
-  public cleanup(): void {
-    if (this.rl) {
-      this.rl.close();
-      this.rl = undefined;
-    }
   }
 
   private showHelp(): void {

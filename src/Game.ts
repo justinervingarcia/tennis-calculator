@@ -49,14 +49,6 @@ export class Game {
   }
 
   /**
-   * Get the difference between the player scores
-   * @returns the difference between the player scores
-   */
-  private getMatchDiff(): number {
-    return Math.abs(this.player1Score - this.player2Score);
-  }
-
-  /**
    * Get the call for a given point
    * @param point the point to get the call for
    * @returns the call for the given point
@@ -94,6 +86,26 @@ export class Game {
     }
 
     return this.getRegularScoreDisplay();
+  }
+
+  /**
+   * Get the winner of the game
+   * @returns the winner of the game
+   */
+  public getWinner(): string | null {
+    if (!this.isOver()) return null;
+
+    return this.player1Score > this.player2Score
+      ? this.player1.name
+      : this.player2.name;
+  }
+
+  /**
+   * Get the difference between the player scores
+   * @returns the difference between the player scores
+   */
+  private getMatchDiff(): number {
+    return Math.abs(this.player1Score - this.player2Score);
   }
 
   /**
@@ -135,17 +147,5 @@ export class Game {
    */
   private getRegularScoreDisplay(): string {
     return `${this.getCall(this.player1Score)} - ${this.getCall(this.player2Score)}`;
-  }
-
-  /**
-   * Get the winner of the game
-   * @returns the winner of the game
-   */
-  public getWinner(): string | null {
-    if (!this.isOver()) return null;
-
-    return this.player1Score > this.player2Score
-      ? this.player1.name
-      : this.player2.name;
   }
 }
